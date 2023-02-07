@@ -116,6 +116,8 @@ return result;
 */ 
 
 
+/*
+
 
 bool isPrime(int n)
 {
@@ -142,10 +144,32 @@ int factorial(int n)
 
 
 }
+*/ 
 
 
+/*
+void permute(std::string& a, int l, int r)
+{
+    // base case
+    if (l == r)
+        std::cout << a << std::endl; 
+    else{
+        // permutations made
+        for(int i = l; i <= r; i++)
+            {
+                // swapping done
+                std::swap(a[l], a[i]);
 
+                // recursion called 
+                permute(a, l + 1, r);
 
+                //backtrack
+                std::swap(a[l], a[i]);
+
+            }
+    }
+}
+*/ 
 
 
 
@@ -160,6 +184,17 @@ void reverse_array(std::vector<int>&);
 
 int main()
 {
+
+/*
+
+
+std::string str = "ABC"; 
+
+int n = str.size(); 
+
+permute(str, 0, n - 1);
+
+*/ 
 
 
 /*
