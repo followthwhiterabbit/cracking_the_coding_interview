@@ -111,10 +111,126 @@ You are looking for a specific value in a binary tree, but the tree is not a bin
 */
 
 
- 
+/*
+
+int sumdigits(int n)
+{
+    int sum = 0; 
+    while(n > 0) //-------------> O(log n). The runtime will be the number of digits in the number. A number with can have a value
+    {                            //up to 10^d, then d = logn. Therefore, the runtime is O(log n).
+        sum += n % 10;
+        n /= 10; 
+    }
+
+return sum; 
+    
+}
+
+*/ 
+
+#include <vector>
+#include <map>
+#include <set>
+// Example: Given an array of disctinct integer values, count the number of pairs of integers that have 
+// difference k. For example, given the array{1, 7, 5, 9, 2, 12, 3} and the difference k = 2, there are four pairs with difference k = 2
+
+
+/*
+
+
+int find_num_of_pairs_with_dif_k(std::vector<int>& arr)
+{
+    int count = 0;
+    for(int i = 0; i < arr.size() - 1; i++)
+    {
+        for(int j = i + 1; j < arr.size(); j++) /---------------------> O(N^2/2)
+            {
+                if(abs(arr.at(i) - arr.at(j)) == 2)
+                    count++;
+            }
+
+    }
+
+return count; 
+
+}
+*/ 
+
+
+
+/*
+
+int num_of_pairs_with_set(std::vector<int> arr)
+{
+    std::set<int> s; 
+    int count = 0; 
+
+    for(int x : arr)
+        s.insert(x); 
+
+    
+    for(auto el : s)
+        if(s.find(el + 2) != s.end())
+            count++; 
+
+return count;
+
+}
+
+*/ 
+
+
+
+/*
+
+////////USING MAP 
+int num_of_pairs_with_hash(std::vector<int> arr)
+{
+    std::map<int, int> s; 
+    int count = 0;
+    for(int x : arr)
+    {
+        s.insert({x, 0});  
+    }
+                                            //----------------> O(N)
+
+    for(auto el : s)
+        if(s.find(el.first + 2) != s.end())
+            count++;
+
+
+return count;
+}
+
+*/ 
+
+
 
 int main()
 {
+
+
+
+std::vector<int> vec{1, 7, 5, 9, 2, 12, 3};
+
+//int val = find_num_of_pairs_with_dif_k(vec);
+
+//std::cout << val << std::endl; 
+
+// int res = num_of_pairs_with_hash(vec); 
+
+
+/*
+
+int res = num_of_pairs_with_set(vec); 
+
+std::cout << res << std::endl; 
+*/ 
+
+//int sum_of_the_digits = sumdigits(171); 
+//std::cout << sum_of_the_digits << std::endl; 
+
+
 
 
 //int val = calculate_square(17);
