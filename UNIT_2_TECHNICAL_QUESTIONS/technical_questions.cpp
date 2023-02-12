@@ -1,6 +1,11 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <memory>
+#include <algorithm>
+
+
+
 
 /*
 
@@ -74,6 +79,11 @@ return element
 */ 
 
 
+/*
+
+
+
+
 void binary_search(std::vector<int> &arr, int min, int max, int element)
 {
 
@@ -91,10 +101,339 @@ else if(arr.at(mid > element))
 }
 
 
+*/
+
+/*
+Given a smaller string s and a bigger string b, design an algorithm to find all permutaions of the shorter string
+within the larger one. Print the location of each permutation. 
+
+S: abbc
+b: cbabadcbbabbcbabaabccbabc
+
+
+
+
+
+void find_permutations(string s, string b)
+
+map S from char to individual int values 
+
+using sliding window, iterate over b and for every 4 chars
+    throw a hash map from individual chars to ints and check if keys are the same and values are also equal 
+    if so 
+        create another hash map from these substrings to integer frequencies
+            only take the keys  
+
+
+end 
+
+
+
+*/
+
+
+/*
+
+
+
+void find_permutations(std::string s, std::string b)
+{
+
+    std::map<char, int> smap; 
+    std::map<char, int> bmap;
+    std::map<std::string, int> rmap; 
+    std::string result_string; 
+
+    for(int i = 0; i < s.size(); i++)
+    {
+        smap[s[i]]++; 
+    }
+
+
+    for(int i = 0; i < b.size() - 4; i++ )
+        {
+           for(int j = i; j < i + 4; j++)
+                {
+                    bmap[b[j]]++;
+                    result_string += b[j]; /// ----- > O(N^2)
+                }
+
+            if(smap == bmap & result_string != s)
+                rmap[result_string]++; 
+
+                bmap.clear(); 
+                result_string.clear(); 
+        }
+
+    for(auto el : rmap)
+        std::cout << el.first << std::endl; 
+
+}
+
+*/ 
+
+
+/*
+Example: A ransom note can be formed by cutting words out of a magazine to form a new ------------>IMPLEMENT THIS 
+sentence. How would you figure out if a ransom note (represented as a string) can be formed
+from a given magazine (string)?
+
+
+
+Example: Design an algorithm to print all permutations of a string. For simplicity, assume all characters are unique. 
+Consider a test string abcdefg
+
+Case "a" ---> {"a"}
+Case "ab" ---> {"ab", "ba"}
+Case "abc" ---> {"", "", ""} // we can insert c basically everywhere inside this string S ---> IMPORTANT, IMPLEMENT THIS 
+
+
+Example: Numbers are randomly generated and stored into an (expanding) array. How would you keep track of the median?
+
+
+
+                                    9
+                                 /    \ 
+                                8       6 
+                             /   \    /   \   
+                             7     4  5    2
+                           /   \ 
+                          0    3   1    
+
+
+
+
+                                    9 
+                                  /  \ 
+                                5     4 
+                               /  \  / \  
+                             1    1  3  2  
+                                            ----> 6 doesn't meet the condition for a max heap 
+
+
+*/
+
+
+/*
+Question: Given two sorted arrays, find the nubmer of elements in common. The arrays are the same length and each has all distinct elements. 
+Let's start with a good example.
+
+A: 13 27 35 40 49 55 59
+B: 17 35 39 40 55 58 60
+
+// they are sorted already 
+
+What we assume: The arrays are the same length and each has all distinct elements.  
+
+
+
+O(N^2) SOLUTION 
+
+for each element in A:
+    for each element in B:
+        if (element in A == element in B)
+            count++; 
+
+
+
+O(N solution)
+
+for each element in A:
+    map[element]++; 
+
+for each element in B:
+    map[element]++; 
+
+
+these maps have different keys. 
+for(auto el : mapA):
+    {
+        auto it = mapB.find(el.first);
+        if(it != mapB.end())
+            count++; 
+    }
+
+
+
+
+
+
+
+*/
+
+
+
+
+/*
+
+O(N^2)
+
+
+int return_number_of_elements_in_commont(std::vector<int> &a, std::vector<int> &b)
+{
+
+int counter = 0; 
+
+for(int i = 0; i < a.size(); i++)
+{
+    for(int j = 0; j < b.size(); j++)
+    {
+        if(a[i] == b[j])
+            {
+               counter++; 
+               break; 
+            }
+    }
+ 
+}
+
+return counter; 
+
+}
+
+*/ 
+
+
+
+/*
+
+
+
+// We can also implement the same algorithm with O(N * logN)
+
+
+Brute Force: O(N^2)
+This algorithm will be O(n * logn)
+
+*/ 
+
+
+int return_number_of_elements_in_commont(std::vector<int> a, std::vector<int> b, int min, int max, int element)
+{
+    int counter = 0; 
+
+    int mid = (min + max) / 2; 
+
+    // we will recursively  search for every element of a inside b 
+    for(int i = 0; i < a.size(); i++)
+    {
+        
+
+
+
+
+
+    }
+
+
+
+
+
+   return counter; 
+}
+
+
+
+
+
+/*
+
+O(N) runtime
+
+int return_number_of_elements_in_commont(std::vector<int> &a, std::vector<int> &b)
+{
+
+    std::map<int, int> mapa, mapb; 
+    int counter = 0; 
+
+    for(int el : a)
+        mapa[el]++; 
+
+    for(int el : b)
+        mapb[el]++; 
+
+    for(auto el : mapa)
+        {
+            auto it = mapb.find(el.first);
+            if(it != mapb.end())
+            counter++; 
+        }
+    return counter; 
+}
+
+*/ 
+
+
+
 
 
 int main()
 {
+
+std::vector<int> A{13, 27, 35, 40, 49, 55, 59};
+std::vector<int> B{17, 35, 39, 40, 55, 58, 60};
+
+
+std::cout << return_number_of_elements_in_commont(A, B);
+
+
+
+
+
+//    std::vector<int> v { 3, 1, 4, 1, 5, 9 };
+ 
+    //std::make_heap(begin(v), end(v));
+
+    //v.push_back(2); 
+    //v.push_back(6);
+
+    //auto heap_end = std::is_heap_until(v.begin(), v.end()); 
+
+
+    //for(auto el : v)
+        //std::cout << el << ' '; 
+
+
+    //std::cout << std::endl; 
+
+    
+    //for(auto i = v.begin(); i != heap_end; ++i)
+        //std::cout << *i << ' '; 
+
+    
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+std::allocator<int> a1; // default allocator for ints 
+int* a = a1.allocate(1); // space for some int 
+a1.construct(a, 1); 
+
+std::cout << *a << std::endl; 
+*/ 
+
+
+
+
+/*
+
+
+std::string s = "abbc";
+std::string b = "cbabadcbbabbcbabaabccbabc"; 
+
+
+find_permutations(s, b); 
+
+*/ 
 
     /* 
     
@@ -108,8 +447,12 @@ int main()
     for (auto el : mypair)
         std::cout << el.first << ' ' << el.second.first << ' ' << el.second.second << std::endl; 
 
-
+ 
     */ 
+
+
+/*
+
 
 std::vector<int> my_vec{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}; 
 
@@ -118,7 +461,7 @@ int min = 0;
 
 binary_search(my_vec, min, max, 9);  
 
-
+*/ 
 
 
 
