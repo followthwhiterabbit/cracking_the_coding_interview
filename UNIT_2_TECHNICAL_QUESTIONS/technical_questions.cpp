@@ -305,9 +305,92 @@ return counter;
 Brute Force: O(N^2)
 This algorithm will be O(n * logn)
 
+
+// we assume that the elements are in sorted order
+
+
+
+
+std::vector<int> A{13, 27, 35, 40, 49, 55, 59};
+std::vector<int> B{17, 35, 39, 40, 55, 58, 60};
+
+
+
+
+
+
 */ 
 
 
+/*
+
+//THIS CHATGPT OUTPUT WORKED !!!
+
+int common_elements(std::vector<int> a, std::vector<int> b) {
+    int n = a.size();
+
+    int m = b.size();
+
+    int i = 0, j = 0, count = 0;
+
+    while (i < n && j < m) {
+
+        if (a[i] == b[j]) { // if ith and jth elements are equal we increase the count and move on 
+
+            count++;
+            i++;
+            j++;
+
+        } else if (a[i] < b[j]) {  // if a[i] is less than b[j] , i++
+
+            i++;
+        } else { // if a [i] is greather than b[j], we just increase j until condition is not satisfied 
+            j++;
+        }
+    }
+    return count;
+}
+*/ 
+// chat gpt bug fix output
+
+/*
+// this chat gpt fix of my code rturns 4 instead of 3
+
+int return_number_of_elements_in_common(std::vector<int> a, std::vector<int> b, int min, int max)
+{
+    int counter = 0;
+
+    if (min > max)
+        return 0;
+
+    int mid = (min + max) / 2;
+
+    for (int i = 0; i < a.size(); i++)
+    {
+        if (a[i] == b[mid])
+        {
+            counter++;
+            break;
+        }
+        else if (a[i] < b[mid])
+        {
+            counter += return_number_of_elements_in_common(a, b, min, mid - 1);
+        }
+        else if (a[i] > b[mid])
+        {
+            counter += return_number_of_elements_in_common(a, b, mid + 1, max);
+        }
+    }
+
+    return counter;
+}
+
+*/ 
+
+
+/*
+
+I TRIED THIS BUT IT DIDNT WORK AS INTENDED
 int return_number_of_elements_in_commont(std::vector<int> a, std::vector<int> b, int min, int max, int element)
 {
     int counter = 0; 
@@ -317,23 +400,26 @@ int return_number_of_elements_in_commont(std::vector<int> a, std::vector<int> b,
     // we will recursively  search for every element of a inside b 
     for(int i = 0; i < a.size(); i++)
     {
-        
-
-
-
-
+        if(a[i] > b[mid])
+            {
+                int val = return_number_of_elements_in_commont(a, b, mid + 1 , max, a[i]); 
+            }
+        else if(a[i] < b[mid])
+            {
+                int val = return_number_of_elements_in_commont(a, b, min, mid - 1, a[i]); 
+            }
+        else if(a[i] == b[mid])
+            {
+                counter++; 
+            }
 
     }
-
-
-
-
 
    return counter; 
 }
 
 
-
+*/ 
 
 
 /*
@@ -374,8 +460,13 @@ std::vector<int> A{13, 27, 35, 40, 49, 55, 59};
 std::vector<int> B{17, 35, 39, 40, 55, 58, 60};
 
 
-std::cout << return_number_of_elements_in_commont(A, B);
+// std::cout << return_number_of_elements_in_commont(A, B);
 
+// std::cout << return_number_of_elements_in_common(A, B, 0, 6); // this shit returns 4 
+
+
+
+// std::cout << common_elements(A, B);
 
 
 
