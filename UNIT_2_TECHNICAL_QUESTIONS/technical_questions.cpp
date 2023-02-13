@@ -356,6 +356,7 @@ int common_elements(std::vector<int> a, std::vector<int> b) {
 /*
 // this chat gpt fix of my code rturns 4 instead of 3
 
+
 int return_number_of_elements_in_common(std::vector<int> a, std::vector<int> b, int min, int max)
 {
     int counter = 0;
@@ -451,6 +452,57 @@ int return_number_of_elements_in_commont(std::vector<int> &a, std::vector<int> &
 
 
 
+//there is also another way to find the total number of common elements 
+//O(N) time 
+/*
+// WORKS 
+
+int return_number_of_elements_in_common(std::vector<int> &a, std::vector<int> &b)
+{
+    std::map<int, int> mapb; 
+    int counter = 0;
+
+    for(auto el : b)
+        mapb[el]++; 
+
+    for(auto el : a)
+    {
+        auto it = mapb.find(el); // o(1)
+        if(it != mapb.end()) 
+            counter++; 
+    }
+    return counter; 
+}
+
+//This is another place where BCR is useful. It tells us that we're "done" in terms of optimizing the 
+//big o time. We could potentially optimize the space complexity. So after optimizing the time complexity
+//optimize the space complexity. 
+
+*/ 
+
+
+/*
+// i am supposed to write an algorithm in O(n) time with linear search -----------> CHECK LATER
+
+int return_number_of_elemets_in_linear_search(std::vector<int> &a, std::vector<int> &b)
+{
+
+    int counter = 0;
+
+    for(int i = 0; i < a.size(); i++)
+    {
+
+
+
+    }
+
+
+}
+
+
+*/
+
+
 
 
 int main()
@@ -469,6 +521,7 @@ std::vector<int> B{17, 35, 39, 40, 55, 58, 60};
 // std::cout << common_elements(A, B);
 
 
+// std::cout << return_number_of_elements_in_common(A, B) << std::endl; 
 
 
 //    std::vector<int> v { 3, 1, 4, 1, 5, 9 };
