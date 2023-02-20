@@ -82,6 +82,4 @@ std::string example_string = "skaan";
 std::cout << is_unique_using_char_arr(example_string) << std::endl;
 
 
-
-
 }
