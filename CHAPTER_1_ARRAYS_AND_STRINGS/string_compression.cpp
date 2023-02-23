@@ -23,7 +23,6 @@ std::string string_compression(std::string &my_str)
 
     for(int i = 0; i <= my_str.size() - 1; i++)
     {
-
         if(my_str[i] == my_str[i+1])
             count_value++;
         else if(my_str[i] != my_str[i+1])
@@ -41,10 +40,6 @@ std::string string_compression(std::string &my_str)
 
 
 }
-
-
-
-
 
 
 
