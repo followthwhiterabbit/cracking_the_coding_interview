@@ -12,32 +12,16 @@ else
     return output
 
 
-
-
-
-
-
  */
 #include <iostream>
-#include <map>
 
 
-int main()
+std::string string_compression(std::string &my_str)
 {
-    //std::multimap<char, int> multi_map; 
-    std::string my_str = "aabcccccaaa"; 
-    std::string res = "";
-    std::map<char, int> my_map;
-
-
-    for(auto &el : my_str)
-        my_str[el]++;
-
-
     int count_value = 1; 
+    std::string res = "";
 
-
-    for(int i = 0; i < my_str.size() - 1; i++)
+    for(int i = 0; i <= my_str.size() - 1; i++)
     {
 
         if(my_str[i] == my_str[i+1])
@@ -46,11 +30,32 @@ int main()
             {
                     res += my_str[i] + std::to_string(count_value); 
                     count_value = 1;
+
             }
      }
 
+    if(res.length() > my_str.length())
+        return my_str; 
+    else
+        return res; 
 
-    std::cout << res << std::endl; 
+
+}
+
+
+
+
+
+
+
+int main()
+{
+    //std::multimap<char, int> multi_map; 
+    //std::string my_str = "aabcccccaaa"; 
+     std::string my_str = "kkkaaabbbcccdddkkk"; 
+
+    std::cout << string_compression(my_str) << std::endl; 
+   
 
 
 }
