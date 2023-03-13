@@ -36,7 +36,6 @@ node* next;
 int main()
 {
 
-struct node* 
 
 
 
