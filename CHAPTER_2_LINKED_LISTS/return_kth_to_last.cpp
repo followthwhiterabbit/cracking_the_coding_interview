@@ -25,6 +25,13 @@ for(int i = 0; i < (node val)- K; i++)
 */
 
 
+/*
+when i check the solutions on internet, they always solved it with the head reference having pointer of pointer, i personally solved in a different way
+
+*/
+
+
+
 #include <iostream>
 
 struct node
@@ -86,7 +93,6 @@ for(int i = 0; i < len - k; i++)
 
 std::cout << std::endl; 
 std::cout << temp->data << std::endl; 
-
 
 
 }
