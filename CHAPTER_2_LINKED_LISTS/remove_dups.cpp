@@ -42,47 +42,52 @@ void printList(node* head)
 
 /*
 only removes duplicate elements next to each other, i am supposed to remove every duplicate element  
+
+1 -> 2 -> 3 -> 2 -> 3 -> 1 
+
+first, we will have a variable of node type pointer called head which points to the first element 
+and a previous node element called prev which is initialized to point to nothing first 
+
+while curr is not nullptr:
+    if(our curr nodes data is inside the set): 
+        prev->next will be equal to curr->next;
+        and then we will remove the current node
+    else(our curr node is not inside the set):
+        we insert the curr->data inside the set
+        and prev becomes our current node
+        and our current node after whether curr->data is inside the set or not:
+            curr = prev->next;
+
+
+
+
+
+
 */
 
 void removeDuplicate(node* head)
 {
 std::set<int> values; 
 
-int curr = head->next->data; 
-int prev= head->data; 
+node* curr = head; 
+node* prev = nullptr; 
 
-values.insert(prev); 
-
-while(head != nullptr)
-{ 
-    node* lastnode; 
-    if(values.find(curr) == values.end())
+while(curr != nullptr)
+{
+    if(values.find(curr->data) != values.end())
     {
-        values.insert(curr); 
-        head = head->next; 
-        curr = head->next->data; 
-        prev = head->data; 
-    } else // here we need to delete the duplicate
-    {
-    
-    if(head->next != nullptr)        
-    {
-        node* temp = head->next; 
-        head->next = head->next->next; 
-        lastnode = head; 
-        delete temp;
-        head = head->next;
-
+        prev->next = curr->next; 
+        delete(curr); 
     }
-    else if(head->next == nullptr)
+    else
     {
-        delete head;
-        lastnode->next = nullptr;
+        values.insert(curr->data); 
+        prev = curr; 
     }
-
-
-    }
+    curr = prev->next; 
 }
+
+
 
 }
 
