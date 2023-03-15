@@ -12,10 +12,13 @@ Suppose the digits are stored in forward order. Repeat the problem.
 Input: (7 -> 1 -> 6) + (5 -> 9 -> 2), That is, 617 + 295 = 912
 Output: 9 -> 1 -> 2. That is 912. 
 
+I didn't notice the fact that I am not allowed to convert it to an integer. :) 
+I'll come back to this problem later on. 
+
 
 */
 #include <iostream>
-
+#include <vector>
 
 struct node
 {
@@ -63,7 +66,7 @@ void printLinkedList(node* head)
 node* sum_lists(node* llist, node* rlist)
 {
 int sum = 0, factor = 1; 
- 
+// std::vector<int> forwardorder;  
 node* newList = new node(); 
 
 while(llist != nullptr)
@@ -81,10 +84,13 @@ while(rlist != nullptr)
     rlist = rlist->next; 
 }
 
+std::cout << sum << std::endl; 
+
 while(sum > 0)
 {
     int pushdata = sum % 10; 
     insertElement(newList, pushdata); 
+    // forwardorder.push_back(pushdata); 
     sum /= 10; 
 }
 
@@ -100,19 +106,19 @@ node* secondlist = new node();
 
 insertElement(firstlist, 7); 
 insertElement(firstlist, 1); 
-insertElement(firstlist, 6); 
+insertElement(firstlist, 6);
+insertElement(firstlist, 1);
+
 
 insertElement(secondlist, 5);
 insertElement(secondlist, 9);
 insertElement(secondlist, 2);
+insertElement(secondlist, 1); 
 
 
 node* newlist = sum_lists(firstlist->next, secondlist->next); 
 
 printLinkedList(newlist); 
-
-
-
 
 
 }
