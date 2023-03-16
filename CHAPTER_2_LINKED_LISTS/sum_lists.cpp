@@ -24,7 +24,8 @@ struct node
 {
 int data; 
 node* next; 
-}; 
+};
+ 
 
 
 // let's create a function to insert an element to the list :) 
