@@ -47,7 +47,7 @@ public:
                 }
             curStack--;  
         }
-        mystack[curStack].pop();
+        mystack[curStack].pop(); 
     }
 
     int top()
