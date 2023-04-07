@@ -94,7 +94,7 @@ int updateBit(int num, int i, bool bit)
     return num; 
 }
 
-
+    
 
 
 int main()
